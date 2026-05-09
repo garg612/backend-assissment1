@@ -12,8 +12,8 @@ const generateTokenAndSetCookie = (user, res) => {
 };
 
 const googleCallback = asyncHandler(async (req, res) => {
-  generateTokenAndSetCookie(req.user, res);
-  res.redirect(`${process.env.CORS_ORIGIN}`);
+  const token = generateTokenAndSetCookie(req.user, res);
+  res.redirect(`${process.env.CORS_ORIGIN}/?token=${token}&role=${req.user.role}`);
 });
 
 const adminLogin = asyncHandler(async (req, res, next) => {

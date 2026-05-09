@@ -46,7 +46,7 @@ import "./config/passport.js";
 import userRoutes from "./routes/user.route.js";
 // Use routes
 app.use("/api/v1/intake", intakeRoutes);
-app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/auth", userRoutes);
 
 app.use(errorHandler);
 

@@ -1,11 +1,11 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user.models.js";
-import asyncHandler from "../utils/asyncHandler.js";
+import asyncHandler from "../utils/asynchandler.js";
 
 export const verifyJWT = asyncHandler(async (req, res, next) => {
   const token =
-    req.cookies?.accessToken ||
-    req.header("Authorization")?.replace("Bearer ", "");
+    req.header("Authorization")?.replace("Bearer ", "") ||
+    req.cookies?.accessToken || req.cookies?.token;
 
   if (!token) {
     return res.status(401).json({
@@ -27,6 +27,7 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
+    console.error("Token verification failed:", error.message, "Token was:", token);
     return res.status(401).json({
       success: false,
       message: "Invalid token",
