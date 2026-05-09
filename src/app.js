@@ -7,6 +7,7 @@ import errorHandler from "./middlewares/error.middlewares.js";
 import cookieParser from "cookie-parser";
 import passport from "passport";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
   })
 );
 
