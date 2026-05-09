@@ -1,5 +1,5 @@
 import Intake from "../models/intake.models.js";
-import asyncHandler from "../utils/asyncHandler.js";
+import asyncHandler from "../utils/asynchandler.js";
 import intakeValidationSchema from "../validation/validation.js";
 import { sanitizeInput } from "../utils/sanitize.js";
 
